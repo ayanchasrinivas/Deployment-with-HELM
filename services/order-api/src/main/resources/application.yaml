@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 25s
+  application:
+    name: order-api
+
+pricing:
+  url: ${PRICING_URL:http://localhost:8000}
+
+app:
+  version: ${APP_VERSION:dev}
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
