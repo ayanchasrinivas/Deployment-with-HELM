@@ -1,0 +1,92 @@
+replicaCount: 2
+image:
+  repository: orderflow/pricing-svc
+  tag: ""
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+service:
+  type: ClusterIP
+  port: 8000
+
+config:
+  logLevel: INFO
+  baseMarkup: "1.15"
+  startupDelaySeconds: "5"
+
+database:
+  enabled: true
+  existingSecret: ""
+  existingSecretKey: dsn
+  host: ""
+  port: 5432
+  name: pricing
+  user: pricing
+  password: ""
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    memory: 256Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
+
+probes:
+  liveness:
+    path: /healthz
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    failureThreshold: 3
+  readiness:
+    path: /readyz
+    initialDelaySeconds: 3
+    periodSeconds: 5
+    failureThreshold: 3
+  startup:
+    enabled: true
+    path: /healthz
+    periodSeconds: 5
+    failureThreshold: 30
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  fsGroup: 10001
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  allowPrivilageEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop: ["ALL"]
+
+nodeSelector: {}
+tolerations: []
+topologySpreadConstraints: []
+
+migrations:
+  enabled: true
+
+metrics:
+  serviceMonitor:
+    enabled: true
+    interval: 30s
