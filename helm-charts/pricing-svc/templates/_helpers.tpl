@@ -2,17 +2,17 @@
 Chart name, overridable.
 */}}
 {{- define "pricing-svc.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-"}}
-{{- end}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- end }}
 
 {{/*
-Fully qualified name. This is the string that becomes your Servuce DNS name,
+Fully qualified name. This is the string that becomes your Service DNS name,
 so getting it wrong breaks service discovery across the whole umbrella chart.
-*\}}
+*/}}
 {{- define "pricing-svc.fullname" -}}
-{{- if. Values.fullnameOverride }}
-{{- .Values.fullnameOverride | trunc 63 | trimsuffix "-" }}
-{{- else}}
+{{- if .Values.fullnameOverride }}
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+{{- else }}
 {{- $name := default .Chart.Name .Values.nameOverride }}
 {{- if contains $name .Release.Name }}
 {{- .Release.Name | trunc 63 | trimSuffix "-" }}

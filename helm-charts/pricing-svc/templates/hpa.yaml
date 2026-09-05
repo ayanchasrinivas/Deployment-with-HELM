@@ -1,6 +1,6 @@
 {{- if .Values.autoscaling.enabled }}
 apiVersion: autoscaling/v2
-kind: HorizantalPodAutoscalar
+kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "pricing-svc.fullname" . }}
   labels:
@@ -17,8 +17,9 @@ spec:
       resource:
         name: cpu
         target:
-          type: utilization
+          type: Utilization
           averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 300
+{{- end }}
