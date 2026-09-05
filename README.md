@@ -1,7 +1,7 @@
 # Orderflow — Helm on Kubernetes, End to End
-<img width="739" height="415" alt="images (2)" src="https://github.com/user-attachments/assets/facf8e03-ee2f-4cbb-8d42-1446852f92ac" />
+<img width="739" height="380" alt="images (2)" src="https://github.com/user-attachments/assets/facf8e03-ee2f-4cbb-8d42-1446852f92ac" />
 
-A hands-on reference project for learning and demonstrating production Helm patterns: chart authoring from scratch, subcharts, hooks, debugging, upgrade/rollback safety, and CI/CD — built around two real microservices instead of toy nginx examples.
+A hands-on project on production Helm patterns and practices: chart authoring from scratch, subcharts, hooks, debugging, upgrade/rollback safety, and CI/CD — built around two real microservices.
 
 ## What this is
 
