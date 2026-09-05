@@ -1,5 +1,5 @@
 # Orderflow — Helm on Kubernetes, End to End
-<img width="739" height="380" alt="images (2)" src="https://github.com/user-attachments/assets/facf8e03-ee2f-4cbb-8d42-1446852f92ac" />
+<img width="739" height="320" alt="images (2)" src="https://github.com/user-attachments/assets/facf8e03-ee2f-4cbb-8d42-1446852f92ac" />
 
 A hands-on project on production Helm patterns and practices: chart authoring from scratch, subcharts, hooks, debugging, upgrade/rollback safety, and CI/CD — built around two real microservices.
 
@@ -33,9 +33,11 @@ Most Helm tutorials stop at "here's a Deployment template." This project goes fu
 | Java 21 + Maven | | Building `order-api` |
 | Python 3.12 | | Local testing of `pricing-svc` |
 
-> **Windows / Git Bash users:** plugin installers may require PowerShell 7 (`pwsh`) on PATH. See `docs/troubleshooting.md` if `helm plugin install` fails with `exec: "pwsh": executable file not found`.
 
 ## Project structure
+# Orderflow — Project Structure
+
+```
 orderflow/
 ├── README.md
 ├── kind-config.yaml                          # 3+ node local cluster definition
@@ -110,11 +112,8 @@ orderflow/
 ├── .github/
 │   └── workflows/
 │       └── deploy.yaml                        # lint → unittest → diff → deploy → smoke test
-│
-└── docs/
-    ├── debugging.md                           # the six-stage debugging funnel
-    ├── break-it-lab.md                        # 10 guided failure scenarios
-    └── troubleshooting.md                     # environment/tooling gotchas (Windows, plugins, etc.)
+
+```
 
 ## Common operations
 
