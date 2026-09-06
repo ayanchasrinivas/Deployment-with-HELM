@@ -1,0 +1,44 @@
+replicaCount: 2
+image:
+  repository: orderflow/order-api
+  tag: ""
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+  managementPort: 8081
+
+ingress:
+  enabled: false
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: orders.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+pricing:
+  url: ""
+  serviceName: "pricing-svc"
+  port: 8000
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    memory: 768Mi
+
+probes:
+  liveness:
+    path: /actuator/health/liveness
+  readiness:
+    path: /actuator/health/readiness
+  startup:
+    enabled: true
+    path: /actuator/health/liveness
+    periodSeconds: 5
+    failureThreshold: 60

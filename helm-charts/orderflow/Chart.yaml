@@ -1,0 +1,25 @@
+apiVersion: v2
+name: orderflow
+description: Orderflow platform — order-api + pricing-svc + postgres
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+
+dependencies:
+  - name: pricing-svc
+    version: "0.1.0"
+    repository: "file://../pricing-svc"
+    condition: pricing-svc.enabled
+
+  - name: order-api
+    version: "0.1.0"
+    repository: "file://../order-api"
+    condition: order-api.enabled
+
+  - name: postgresql
+    version: "16.2.1"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: postgresql.enabled
+    tags:
+      - database
+    alias: db          # subchart now addressed as .Values.db, and named <release>-db

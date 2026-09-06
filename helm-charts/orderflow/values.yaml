@@ -1,0 +1,35 @@
+# Global values are injected into EVERY subchart under .Values.global
+global:
+  imageRegistry: ""
+  environment: dev
+
+pricing-svc:
+  enabled: true
+  replicaCount: 2
+  database:
+    enabled: true
+    host: orderflow-db-postgresql   # <release>-<alias>-postgresql
+    user: pricing
+    name: pricing
+    password: devpassword
+
+order-api:
+  enabled: true
+  replicaCount: 2
+  ingress:
+    enabled: true
+    hosts:
+      - host: orders.local
+        paths:
+          - path: /
+            pathType: Prefix
+
+postgresql:
+  enabled: true
+  auth:
+    username: pricing
+    password: devpassword
+    database: pricing
+  primary:
+    persistence:
+      enabled: false     # dev only
