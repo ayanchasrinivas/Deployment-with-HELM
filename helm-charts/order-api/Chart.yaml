@@ -1,0 +1,18 @@
+apiVersion: v2
+name: order-api
+description: Public order API (Spring Boot) — calls pricing-svc to price orders
+type: application
+
+version: 0.1.0
+appVersion: "0.1.0"
+
+kubeVersion: ">=1.25.0-0"
+
+maintainers:
+  - name: platform-team
+    email: platform@example.com
+
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: initial chart

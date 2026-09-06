@@ -1,0 +1,12 @@
+dependencies:
+- name: pricing-svc
+  repository: file://../pricing-svc
+  version: 0.1.0
+- name: order-api
+  repository: file://../order-api
+  version: 0.1.0
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 16.2.1
+digest: sha256:859ded37732963945c8a24b8490d7188ca65f48166961178158f6321b2957417
+generated: "2026-09-06T21:19:07.3523419+05:30"
