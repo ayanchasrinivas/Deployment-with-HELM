@@ -38,6 +38,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "order-api.fullname" . }}
           ports:
             - name: http
               containerPort: 8080

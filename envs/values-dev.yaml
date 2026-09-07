@@ -1,0 +1,43 @@
+global:
+  environment: dev
+
+pricing-svc:
+  enabled: true
+  replicaCount: 2
+  image:
+    tag: "0.1.0"
+  database:
+    enabled: true
+    host: orderflow-db-postgresql
+    port: 5432
+    user: pricing
+    name: pricing
+    password: devpassword
+  config:
+    logLevel: INFO
+    baseMarkup: "1.15"
+    startupDelaySeconds: "5"
+
+order-api:
+  enabled: true
+  replicaCount: 2
+  image:
+    tag: "0.1.0"
+  pricing:
+    serviceName: "pricing-svc"
+    port: 8000
+  ingress:
+    enabled: true
+
+postgresql:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/postgresql
+  auth:
+    username: pricing
+    password: devpassword
+    database: pricing
+  primary:
+    persistence:
+      enabled: false
