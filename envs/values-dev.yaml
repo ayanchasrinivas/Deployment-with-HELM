@@ -8,7 +8,7 @@ pricing-svc:
     tag: "0.1.0"
   database:
     enabled: true
-    host: orderflow-db-postgresql
+    host: orderflow-db
     port: 5432
     user: pricing
     name: pricing
@@ -31,6 +31,8 @@ order-api:
 
 postgresql:
   enabled: true
+
+db:
   image:
     registry: docker.io
     repository: bitnamilegacy/postgresql
